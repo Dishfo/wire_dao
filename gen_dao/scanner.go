@@ -18,13 +18,19 @@ scan all go file and get dao-model
 */
 
 type Scanner struct {
-	cfg            *ScanConfig
+	//options
+	cfg           *ScanConfig
+	objectsFilter []ObjectsFilter
+
 	dirs           []string
 	parsedDaoModel []*DaoModel
 	allTypes       map[string][]TypeDescription
 	allFunction    map[string][]FunctionDescription
 	filesImport    map[string][]*ImportDescription
 	packagesIndex  map[string]*packages.Package
+
+	//gen process
+	objects map[TypeDescription][]FunctionDescription
 
 	//parse process
 	curFile string
@@ -37,13 +43,15 @@ type ScanConfig struct {
 
 func ScanFiles(cfg *ScanConfig) (*Scanner, error) {
 	inst := Scanner{
-		cfg: cfg,
-		allTypes: map[string][]TypeDescription{
-
-		},
+		cfg:           cfg,
+		allTypes:      map[string][]TypeDescription{},
 		allFunction:   map[string][]FunctionDescription{},
 		filesImport:   map[string][]*ImportDescription{},
 		packagesIndex: map[string]*packages.Package{},
+		objects:       map[TypeDescription][]FunctionDescription{},
+		objectsFilter: []ObjectsFilter{
+			gormObjFilter,
+		},
 	}
 
 	err := inst.listAllDir()
@@ -354,9 +362,7 @@ func (s *Scanner) parseUsedExpr(x ast.Expr) *parsedField {
 		ret = coped
 	case *ast.StarExpr:
 		pf := s.parseUsedExpr(realExpr.X)
-		coped := &parsedField{
-
-		}
+		coped := &parsedField{}
 		*coped = *pf
 		coped.typ = ReceiveTypePtr
 		ret = coped
@@ -449,8 +455,7 @@ func (s *Scanner) parseField(f *ast.Field) []*parsedField {
 		realField := s.parseUsedExpr(readField.X)
 		for i, _ := range ret {
 
-			coped := &parsedField{
-			}
+			coped := &parsedField{}
 
 			*coped = *realField
 			coped.name = names[i]

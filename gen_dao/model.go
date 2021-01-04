@@ -47,7 +47,7 @@ const (
 )
 
 type UsedTypeDesc struct {
-	Name            string
+	Name            string //this not a real type name
 	TypeDescription *TypeDescription
 }
 
@@ -145,6 +145,7 @@ func (m *parsedField) Description() *TypeDescription {
 		BuiltinType: BuiltinType(m.baseTypeName),
 		KeyType:     m.keyType.Description(),
 		ValType:     m.valType.Description(),
+		TypeSpec:    m.spec,
 	}
 
 	if ret.PackageSt != nil {

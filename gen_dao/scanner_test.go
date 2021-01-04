@@ -5,11 +5,11 @@ import (
 )
 
 func TestScannerListDir(t *testing.T) {
-	//s1 := "/home/dishfo/go/src/git.uidev.tools/unifi/wire_dao/db/user_model"
-	s2 := "/home/dishfo/go/src/git.uidev.tools/unifi/uid.ud/db"
+	s1 := "/home/dishfo/go/src/git.uidev.tools/unifi/wire_dao/db/user_model"
+	//s2 := "/home/dishfo/go/src/git.uidev.tools/unifi/uid.ud/db"
 
 	scaner, err := ScanFiles(&ScanConfig{
-		TopDir: s2,
+		TopDir: s1,
 	})
 
 	if err != nil {
