@@ -237,6 +237,7 @@ func (s *Scanner) rememberDecl(pack *packages.Package, decl ast.Decl) (err error
 
 		funcs = append(funcs, FunctionDescription{
 			Package:  pack.ID,
+			FuncName: realDecl.Name.Name,
 			FuncDecl: realDecl,
 			Receive:  receive,
 			Params:   s.parseFuncParams(pack, realDecl.Type.Params),

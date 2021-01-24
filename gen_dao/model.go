@@ -74,10 +74,19 @@ type FunctionRet struct {
 
 type FunctionDescription struct {
 	Package  string
+	FuncName string
 	FuncDecl *ast.FuncDecl
 	Receive  *FunctionReceive
 	Ret      []*FunctionRet
 	Params   []*FunctionArgument
+}
+
+func (m *FunctionDescription) ReceiveType() string {
+	if m.Receive == nil {
+		return ""
+	}
+
+	return m.Receive.TypeDescription.TypeName
 }
 
 func (m *FunctionDescription) ID() string {
