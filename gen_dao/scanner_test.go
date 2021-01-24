@@ -5,7 +5,7 @@ import (
 )
 
 func TestScannerListDir(t *testing.T) {
-	s1 := "/home/dishfo/go/src/git.uidev.tools/unifi/wire_dao/db/user_model"
+	s1 := "/home/dishfo/go/src/github.com/Dishfo/wire_dao/db/user_model"
 	//s2 := "/home/dishfo/go/src/git.uidev.tools/unifi/uid.ud/db"
 
 	scaner, err := ScanFiles(&ScanConfig{

@@ -1,7 +1,7 @@
 package user_service
 
 import (
-	"git.uidev.tools/unifi/wire_dao/db/user_model"
+	"github.com/Dishfo/wire_dao/db/user_model"
 )
 
 type UserService struct {
