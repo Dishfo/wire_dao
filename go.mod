@@ -1,4 +1,4 @@
-module git.uidev.tools/unifi/wire_dao
+module github.com/Dishfo/wire_dao
 
 go 1.14
 
