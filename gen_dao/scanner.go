@@ -8,6 +8,7 @@ import (
 	"go/token"
 	"golang.org/x/tools/go/packages"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -368,6 +369,7 @@ func (s *Scanner) parseUsedExpr(x ast.Expr) *parsedField {
 		coped.typ = ReceiveTypePtr
 		ret = coped
 	default:
+		log.Printf("can't handle this %v", x)
 		fmt.Println("parsed failed :unhit ")
 		//todo panic
 	}
