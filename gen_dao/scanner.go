@@ -368,10 +368,20 @@ func (s *Scanner) parseUsedExpr(x ast.Expr) *parsedField {
 		*coped = *pf
 		coped.typ = ReceiveTypePtr
 		ret = coped
+	case *ast.MapType:
+		kt := s.parseUsedExpr(realExpr.Key)
+		vt := s.parseUsedExpr(realExpr.Value)
+		coped := &parsedField{
+			typ:     ReceiveTypeMap,
+			keyType: kt,
+			valType: vt,
+		}
+		ret = coped
+
 	default:
 		log.Printf("can't handle this %v", x)
 		fmt.Println("parsed failed :unhit ")
-		//todo panic
+		//todo panic mapType
 	}
 
 	return ret
