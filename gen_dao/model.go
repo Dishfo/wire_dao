@@ -44,6 +44,7 @@ const (
 	ReceiveTypeMap    UsedType = 0x5
 	ReceiveTypeIntr   UsedType = 0x6
 	ReceiveTypeExpand UsedType = 0x7
+	ReceiveTypeFunc   UsedType = 0x8
 )
 
 type UsedTypeDesc struct {

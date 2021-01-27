@@ -377,7 +377,11 @@ func (s *Scanner) parseUsedExpr(x ast.Expr) *parsedField {
 			valType: vt,
 		}
 		ret = coped
-
+	case *ast.FuncType:
+		coped := &parsedField{
+			typ: ReceiveTypeFunc,
+		}
+		ret = coped
 	default:
 		log.Printf("can't handle this %v", x)
 		fmt.Println("parsed failed :unhit ")
@@ -485,6 +489,15 @@ func (s *Scanner) parseField(f *ast.Field) []*parsedField {
 				keyType:  kt,
 				valType:  vt,
 			}
+			ret[i] = coped
+		}
+	case *ast.FuncType:
+		for i, _ := range ret {
+
+			coped := &parsedField{}
+			coped.name = names[i]
+			coped.typ = ReceiveTypeFunc
+			coped.rawField = f
 			ret[i] = coped
 		}
 	default:
