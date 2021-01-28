@@ -236,11 +236,19 @@ func (s *Scanner) rememberDecl(pack *packages.Package, decl ast.Decl) (err error
 			receive = s.parseReceiveField(field)
 		}
 
+		var comments []string
+		if realDecl.Doc != nil {
+			for _, comment := range realDecl.Doc.List {
+				comments = append(comments, comment.Text)
+			}
+		}
+
 		funcs = append(funcs, FunctionDescription{
 			Package:  pack.ID,
 			FuncName: realDecl.Name.Name,
 			FuncDecl: realDecl,
 			Receive:  receive,
+			Comments: comments,
 			Params:   s.parseFuncParams(pack, realDecl.Type.Params),
 			Ret:      s.parseFuncResults(pack, realDecl.Type.Results),
 		})

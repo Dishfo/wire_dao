@@ -78,8 +78,10 @@ type FunctionDescription struct {
 	FuncName string
 	FuncDecl *ast.FuncDecl
 	Receive  *FunctionReceive
-	Ret      []*FunctionRet
-	Params   []*FunctionArgument
+	Comments []string
+
+	Ret    []*FunctionRet
+	Params []*FunctionArgument
 }
 
 func (m *FunctionDescription) ReceiveType() string {
