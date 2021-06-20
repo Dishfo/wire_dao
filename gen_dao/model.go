@@ -212,3 +212,19 @@ func (s *Scanner) findSelType(selItems []string) (pack *packages.Package, typeSp
 
 	return nil, nil
 }
+
+type FunctionCall struct {
+	FuncName string
+	Args     []string
+}
+
+type FunctionVar struct {
+	Name string
+	Type string
+}
+
+type FunctionImplement struct {
+	Vars   []FunctionVar
+	Called []FunctionCall
+	Return []FunctionVar
+}

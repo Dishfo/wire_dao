@@ -66,3 +66,29 @@ func (m *FunctionAnalysis) HasUsePackage(packID string) bool {
 
 	return false
 }
+
+/*
+
+a object used to analysis function implement
+
+variable declare ,
+variable set
+
+call other function
+
+
+return
+*/
+type VariableDescription struct {
+	Name string
+	Type *TypeDescription
+}
+
+type FunctionStackAnalysis struct {
+	desc       *FunctionDescription
+	declareVar []*VariableDescription
+}
+
+func (f *FunctionStackAnalysis) Analysis() {
+
+}

@@ -33,3 +33,8 @@ func (s *Scanner) FindFunction(funcID FunctionID) (FunctionDescription, error) {
 
 	return FunctionDescription{}, ErrFuncNotFound
 }
+
+func (s *Scanner) AnalysisFunctionBody(funcID FunctionID) FunctionImplement {
+
+	return FunctionImplement{}
+}
